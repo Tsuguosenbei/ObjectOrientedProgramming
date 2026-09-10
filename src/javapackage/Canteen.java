@@ -11,7 +11,7 @@ public class Canteen {
         boolean continueOrdering = true;
 
         while (continueOrdering) {
-            // 1. Display Menu
+            
             System.out.println("\n===== MENU =====");
             System.out.println("1. Burger   - $80.00");
             System.out.println("2. Pizza    - $120.00");
@@ -20,32 +20,32 @@ public class Canteen {
             System.out.println("5. Soda     - $45.00");
             System.out.println("================");
 
-            // 2 & 3. Input and validation for Item Number
+            
             System.out.print("Enter item number (1-5): ");
             int itemNo = input.nextInt();
 
             if (itemNo < 1 || itemNo > 5) {
                 System.out.println("Invalid entry: Item must correspond to a choice in the menu.");
-                continue; // 6. Skip remaining processing for this order
+                continue;
             }
 
-            // 2 & 3. Input and validation for Quantity
+       
             System.out.print("Enter quantity (1-10): ");
             int quantity = input.nextInt();
 
             if (quantity < 1 || quantity > 10) {
                 System.out.println("Invalid entry: Quantity must be at least 1 but no more than 10.");
-                continue; // 6. Skip remaining processing for this order
+                continue; 
             }
 
-            // 2. Input for Student Status
+          
             System.out.print("Are you a student? (Y/N): ");
             String studentInput = input.next();
             if (studentInput.equalsIgnoreCase("Y")) {
                 isStudent = true;
             }
 
-            // Determine price based on valid item number
+         
             double price = 0;
             switch(itemNo) {
                 case 1: price = 80.0; break;
@@ -55,11 +55,11 @@ public class Canteen {
                 case 5: price = 45.0; break;
             }
 
-            // Accumulate totals
+         
             totalAmountBeforeDeductions += (price * quantity);
             totalQuantity += quantity;
 
-            // 5. Ask to order again
+           
             System.out.print("Do you want to order again? (Y/N): ");
             String again = input.next();
             if (again.equalsIgnoreCase("N")) {
@@ -67,21 +67,21 @@ public class Canteen {
             }
         }
 
-        // 4. Calculate Deductions based on conditions
+       
         double discountRate = 0.0;
         
         if (isStudent && totalAmountBeforeDeductions >= 500) {
-            discountRate = 0.15; // Student AND $500 or more
+            discountRate = 0.15; 
         } else if (isStudent) {
-            discountRate = 0.10; // Student only
+            discountRate = 0.10; 
         } else if (totalAmountBeforeDeductions >= 500) {
-            discountRate = 0.05; // $500 or more only
-        } // Else remains 0.0
+            discountRate = 0.05;
+        } 
 
         double totalDeduction = totalAmountBeforeDeductions * discountRate;
         double finalAmount = totalAmountBeforeDeductions - totalDeduction;
 
-        // 8. Display Final Output
+   
         System.out.println("\n===== TRANSACTION SUMMARY =====");
         System.out.println("Total quantity of items purchased: " + totalQuantity);
         System.out.printf("Total amount before deductions: $%.2f\n", totalAmountBeforeDeductions);
